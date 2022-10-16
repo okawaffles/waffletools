@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waffletools YTDL</title>
+</head>
+
+<body>
+    <input id="link" type="text" placeholder="YouTube URL">
+    <button id="mp3dl">Download MP3</button>
+    <button id="mp4dl">Download MP4 (Low Quality!)</button>
+
+    <script>
+        document.getElementById('mp3dl').onclick = function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", `/mp3?url=${document.getElementById('link').value}`, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                value: undefined
+            }));
+        }
+    </script>
+</body>
+
+</html>
