@@ -1,0 +1,59 @@
+body {
+    background-color: black;
+}
+
+@font-face {
+    font-family: MalgunGothic;
+    src: url('./malgun.ttf');
+}
+
+* {
+    font-family: MalgunGothic;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.h {
+    color: white;
+    text-align: center;
+}
+hr { 
+    width: 100%;
+    color: white;
+    margin: 20px 0px;
+}
+
+p {
+    color: white;
+}
+.button {
+    width: 300px;
+    height: 65px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: large;
+    background-color: black;
+    border: 2px solid white;
+    border-radius: 15px;
+
+    margin-top: 10px;
+    transition: 0.5s;
+}
+.button:hover {
+    color: black;
+    background-color: white;
+
+    margin-top: 0px;
+    transition: 0.5s;
+}
+
+.link {
+    width: 400px;
+    height: 25px;
+    text-align: center;
+}

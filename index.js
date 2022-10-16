@@ -5,18 +5,34 @@ const fmd = require('formidable');
 const app = express();
 
 app.set('view engine', 'ejs')
+app.use('/assets', express.static('./views/assets'))
 
 app.get('/', (req, res) => {
     res.render('index.ejs');
 });
-
-app.post('/ytdl/mp3', (req, res) => {
-    let url = req.query.url;
-
-    ytdl(url, { filter: 'audioonly' }).pipe(fs.createWriteStream(`./downloads/download.mp3`).on('finish', () => {
-        res.sendFile('./downloads/download.mp3', {root:__dirname});
-        res.end();
-    }));
+app.get('/ytdl', (req, res) => {
+    res.render('ytdl.ejs');
 });
 
-app.listen('4040');
+app.post('/ytdl', (req, res) => {
+    let form = new fmd.IncomingForm();
+    form.parse(req, (err, fields, files) => {
+        if (err) return;
+
+        if (fields.include_video) {
+            ytdl(fields.link).pipe(fs.createWriteStream(`./downloads/download.mp4`).on('finish', () => {
+                res.send(fs.readFileSync('./downloads/download.mp4'));
+                res.end();
+            }));
+        } else {
+            ytdl(fields.link, { filter: 'audioonly' }).pipe(fs.createWriteStream(`./downloads/download.mp3`).on('finish', () => {
+                res.send(fs.readFileSync('./downloads/download.mp3'));
+                res.end();
+            }));
+        }
+    })
+});
+
+app.listen('4040', () => {
+    console.log('ready!');
+});
