@@ -16,6 +16,9 @@ body {
     justify-content: center;
     text-align: center;
 }
+.imain {
+    text-align: center;
+}
 
 .h {
     color: white;
@@ -51,9 +54,18 @@ p {
     margin-top: 0px;
     transition: 0.5s;
 }
+.wlarge {
+    width: 500px;
+}
 
 .link {
     width: 400px;
     height: 25px;
     text-align: center;
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
 }
