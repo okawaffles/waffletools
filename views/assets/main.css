@@ -68,4 +68,8 @@ footer {
     position: absolute;
     left: 0;
     bottom: 0;
+    color: white;
+}
+footer h3 {
+    margin: 2px;
 }
