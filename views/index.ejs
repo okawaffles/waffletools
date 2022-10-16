@@ -21,6 +21,27 @@
             xhr.send(JSON.stringify({
                 value: undefined
             }));
+
+            document.body.innerHTML = "<h1>Please wait a moment!</h1>";
+
+            setTimeout(() => {
+                window.location = './dlmp3';
+            }, 10000)
+        }
+
+        document.getElementById('mp4dl').onclick = function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", `/mp4?url=${document.getElementById('link').value}`, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                value: undefined
+            }));
+
+            document.body.innerHTML = "<h1>Please wait a moment!</h1>";
+
+            setTimeout(() => {
+                window.location = './dlmp4';
+            }, 10000)
         }
     </script>
 </body>
