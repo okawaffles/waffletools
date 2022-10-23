@@ -22,6 +22,8 @@ app.get('/ytdl', (req, res) => {
     res.render('ytdl.ejs');
 });
 
+// change to post /download.mp3 && download.mp4
+
 app.post('/ytdl', (req, res) => {
     let form = new fmd.IncomingForm();
     form.parse(req, (err, fields, files) => {
