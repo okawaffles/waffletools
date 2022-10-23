@@ -12,8 +12,9 @@ const ffmpeg = require('ffmpeg-static');
 
 
 // express
-app.set('view engine', 'ejs')
-app.use('/assets', express.static('./views/assets'))
+app.set('view engine', 'ejs');
+app.use('/assets', express.static('./views/assets'));
+app.use('/downloads', express.static('./downloads'));
 
 app.get('/', (req, res) => {
     res.render('index.ejs');
@@ -22,7 +23,10 @@ app.get('/ytdl', (req, res) => {
     res.render('ytdl.ejs');
 });
 
-// change to post /download.mp3 && download.mp4
+app.get('/get', (req, res) => {
+    if (!req.query.q) return;
+    res.render('dl.ejs', {'name':req.query.q});
+})
 
 app.post('/ytdl', (req, res) => {
     let form = new fmd.IncomingForm();
@@ -32,9 +36,10 @@ app.post('/ytdl', (req, res) => {
         if (fields.include_video) {
             WT_Download(fields.link, res);
         } else {
-            ytdl(fields.link, { filter: 'audioonly', quality: 'highestaudio' }).pipe(fs.createWriteStream(`./downloads/download.mp3`).on('finish', () => {
-                let file = fs.readFileSync('./downloads/download.mp3');
-                res.send(file);
+            ytdl(fields.link, { filter: 'audioonly'}).pipe(fs.createWriteStream(`./downloads/download.mp3`).on('finish', () => {
+                /*let file = fs.readFileSync('./downloads/download.mp3');
+                res.send(file);*/
+                res.redirect('/get?q=download.mp3');
             }));
         }
     })
@@ -117,9 +122,10 @@ function WT_Download(ref, res) {
         process.stdout.write('\n\n\n\n');
         clearInterval(progressbarHandle);
 
-        let file = fs.readFileSync('./downloads/download.mp4');
+        /*let file = fs.readFileSync('./downloads/download.mp4');
         res.send(file);
-        res.end();
+        res.end();*/
+        res.redirect('/get?q=download.mp4');
     });
 
     // Link streams
