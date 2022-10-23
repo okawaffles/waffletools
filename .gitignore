@@ -1,2 +1,4 @@
 node_modules/
-downloads/download.mp*
+downloads/download.mp4
+downloads/download.mp3
+.ENV
