@@ -16,11 +16,16 @@ app.set('view engine', 'ejs');
 app.use('/assets', express.static('./views/assets'));
 app.use('/downloads', express.static('./downloads'));
 
+let version = JSON.parse(fs.readFileSync('./package.json'))['version'];
+
 app.get('/', (req, res) => {
-    res.render('index.ejs');
+    res.render('index.ejs', {version:version});
 });
 app.get('/ytdl', (req, res) => {
     res.render('ytdl.ejs');
+});
+app.get('/ytdl/issues', (req, res) => {
+    res.render('ytdl-issues.ejs');
 });
 
 app.get('/get', (req, res) => {
