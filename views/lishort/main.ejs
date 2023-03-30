@@ -5,8 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Link Shortener ・ WaffleTools</title>
+    <link rel="stylesheet", href="/assets/main.css">
 </head>
 <body>
-    
+    <h1 class="h">Link Shortener ・ WaffleTools</h1>
+    <hr>
+    <form class="centered" method="POST" action="/api/lishort">
+        <input type="url" placeholder="URL">
+        <input type="submit" value="Shorten"><br>
+        <p>You will be redirected afterwards</p>
+    </form>
+
+    <footer>
+        <button class="button" onclick="window.location = '../'">Back</button>
+        <button class="button" onclick="window.location = 'https:/\/github.com/okawaffles/waffletools'">View Source Code</button>
+    </footer>
 </body>
 </html>

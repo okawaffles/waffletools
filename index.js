@@ -21,6 +21,8 @@ let version = JSON.parse(fs.readFileSync('./package.json'))['version'];
 app.get('/', (req, res) => {
     res.render('index.ejs', {version:version});
 });
+
+// youtube downloader
 app.get('/ytdl', (req, res) => {
     res.render('ytdl/ytdl.ejs');
 });
@@ -49,6 +51,13 @@ app.post('/ytdl', (req, res) => {
         }
     })
 });
+
+
+// link shortener
+app.get('/shorten', (req, res) => {
+    res.render('lishort/main.ejs');
+})
+
 
 app.listen('4040', () => {
     console.log('ready!');
