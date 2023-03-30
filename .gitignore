@@ -2,3 +2,4 @@ node_modules/
 downloads/download.mp4
 downloads/download.mp3
 .ENV
+emulated/

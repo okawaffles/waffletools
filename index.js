@@ -13,7 +13,7 @@ const ffmpeg = require('ffmpeg-static');
 
 // express
 app.set('view engine', 'ejs');
-app.use('/assets', express.static('./views/assets'));
+app.use('/assets', express.static('./views/global_assets'));
 app.use('/downloads', express.static('./downloads'));
 
 let version = JSON.parse(fs.readFileSync('./package.json'))['version'];
@@ -22,15 +22,15 @@ app.get('/', (req, res) => {
     res.render('index.ejs', {version:version});
 });
 app.get('/ytdl', (req, res) => {
-    res.render('ytdl.ejs');
+    res.render('ytdl/ytdl.ejs');
 });
 app.get('/ytdl/issues', (req, res) => {
-    res.render('ytdl-issues.ejs');
+    res.render('ytdl/ytdl-issues.ejs');
 });
 
 app.get('/get', (req, res) => {
     if (!req.query.q) return;
-    res.render('dl.ejs', {'name':req.query.q});
+    res.render('ytdl/dl.ejs', {'name':req.query.q});
 })
 
 app.post('/ytdl', (req, res) => {
